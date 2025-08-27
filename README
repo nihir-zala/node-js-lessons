@@ -4,20 +4,23 @@ tutorials following by piyush garg
 https://www.youtube.com/playlist?list=PLinedj3B30sDby4Al-i13hQJGQoRQDfPo
 
 #lesson-1
-- general commands and console log
+- Lesson:1 general commands and console log
 
 #lesson-2
-- Lesson 2 about the modules and created the modules and export as well
+- Lesson:2 about the modules and created the modules and export as well
 
 #lesson-3
-- Lesson 3 about the file handling
+- Lesson:3 about the file handling
     - Directory creating
     - File creating
     - File data adding
     - file data appending
 
 #lesson-4
-    - Lesson 4 was about thearitical part weather use sync and async
+- Lesson:4 was about thearitical part weather use sync and async
 
 #lesson-5
-- Lesson 5 is all about how to create the server via Node JS
+- Lesson:5 is all about how to create the server via Node JS
+
+#lesson-6
+- Lesson:6 is all about url handling

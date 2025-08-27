@@ -1,3 +1,6 @@
 
 ./lesson-3/file
 ./lesson-5/log.txt
+log.txt
+lesson-*/node_modules/
+node_modules/
