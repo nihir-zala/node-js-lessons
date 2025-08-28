@@ -8,6 +8,13 @@ const port = 8000;
 // middleware for the get the data from the post req.
 app.use(express.urlencoded({ extended: false }));
 
+// Custom Middleware for the log
+app.use((req, res, next) => {
+  fs.appendFile('log.txt',`${Date.now()}: ${req.ip}: ${req.method}: ${req.path} \n`, (err, data) => {
+    next(); //pass to the next middleware 
+  });
+});
+
 // Routes
 
 app.get("/api/users", (req, res) => {
