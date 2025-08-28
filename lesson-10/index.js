@@ -18,6 +18,9 @@ app.use((req, res, next) => {
 // Routes
 
 app.get("/api/users", (req, res) => {
+
+  res.setHeader('headerName', 'Nihir'); // created the custom header and set the value
+
   return res.json(users);
 });
 
