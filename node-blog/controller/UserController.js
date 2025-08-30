@@ -45,10 +45,42 @@ function handleLogOut(req, res) {
   res.redirect("/");
 }
 
+async function updateProfile(req, res) {
+  try {
+    const { fullName } = req.body; // now this works
+
+    if (!fullName || fullName.trim() === "") {
+      return res.render("profile", {
+        user: req.user,
+        error: "Full name cannot be empty",
+      });
+    }
+
+    await User.findByIdAndUpdate(req.user._id, { fullName: fullName.trim() });
+
+    res.redirect("/user/profile");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error while updating profile.");
+  }
+}
+
+async function editUserProfile(req, res) {
+  try {
+    const user = req.user; // logged-in user
+    res.render("profile", { user, error: "" }); // pass error as empty string
+  } catch (err) {
+    console.error(err);
+    res.render("profile", { user: req.user, error: "Something went wrong." });
+  }
+}
+
 module.exports = {
   postSignup,
   getSignup,
   getSignIn,
   postSignIn,
   handleLogOut,
+  editUserProfile,
+  updateProfile,
 };
