@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Edit Blog</title>
+  <%- include('./partials/header') %>
+</head>
+
+<body>
+  <%- include('./partials/navbar') %>
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="shadow p-4" style="min-width: 400px; max-width: 600px; width: 100%;">
+      <h3 class="mb-4 text-center">Edit Blog</h3>
+
+      <form action="/blog/edit/<%= blog._id %>" method="POST" enctype="multipart/form-data">
+        <!-- Title -->
+        <div class="mb-3">
+          <label for="title" class="form-label">Blog Title</label>
+          <input type="text" class="form-control" id="title" name="title" value="<%= blog.title %>" placeholder="Enter blog title" required>
+        </div>
+
+        <!-- Body -->
+        <div class="mb-3">
+          <label for="body" class="form-label">Content</label>
+          <textarea class="form-control" id="body" name="body" rows="8" placeholder="Write your blog content..." required><%= blog.body %></textarea>
+        </div>
+
+        <!-- Current Cover Image -->
+        <% if (blog.coverImageURL) { %>
+        <div class="mb-3 text-center">
+          <p>Current Cover Image:</p>
+          <img src="<%= blog.coverImageURL %>" class="img-fluid rounded" style="max-height:90px;">
+        </div>
+        <% } %>
+
+        <!-- New Cover Image -->
+        <div class="mb-3">
+          <label for="coverImage" class="form-label">Change Cover Image (optional)</label>
+          <input type="file" class="form-control" id="coverImage" name="coverImage">
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Update Blog</button>
+      </form>
+    </div>
+  </div>
+
+  <%- include('./partials/scripts') %>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Index</title>
+  <%- include('./partials/header') %>
+</head>
+
+<body>
+  <%- include('./partials/navbar') %>
+
+  <div class="container py-5">
+    <% if(blog){ %>
+    <div class="card shadow-sm">
+      <% if(blog.coverImageURL){ %>
+      <img src="<%= blog.coverImageURL %>" class="card-img-top" alt="Cover Image">
+      <% } %>
+
+      <div class="card-body">
+        <h2 class="card-title"><%= blog.title %></h2>
+        <p class="card-text"><%= blog.body %></p>
+      </div>
+
+      <div class="card-footer d-flex align-items-center">
+        <img src="<%= blog.createdBy && blog.createdBy.profileImageURL ? '/' + blog.createdBy.profileImageURL : '/images/default-avatar.jpg' %>" class="rounded-circle me-2" style="width:35px; height:35px;">
+        <small class="text-muted">by <%= blog.createdBy ? blog.createdBy.fullName : "Unknown" %></small>
+      </div>
+    </div>
+    <% } else { %>
+    <p class="text-center">Blog not found.</p>
+    <% } %>
+  </div>
+
+  <%- include('./partials/scripts') %>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>My Blogs</title>
+  <%- include('./partials/header') %>
+</head>
+
+<body>
+  <%- include('./partials/navbar') %>
+
+  <div class="container py-5">
+    <h2 class="mb-4">My Blogs</h2>
+
+    <% if (blogs.length === 0) { %>
+    <p>You have not created any blogs yet. <a href="/blog/create">Create one</a>.</p>
+    <% } else { %>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark">
+          <tr>
+            <!-- <th>Cover</th> -->
+            <th>Title</th>
+            <th>Snippet</th>
+            <th>Created At</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% blogs.forEach(blog => { %>
+          <tr>
+            <!-- <td style="width:80px;">
+              <img src="<%= blog.coverImageURL ? '/' + blog.coverImageURL : '/images/default-blog.jpg' %>" class="img-fluid rounded" style="max-height:60px;" />
+            </td> -->
+            <td><%= blog.title %></td>
+            <td><%= blog.body.substring(0, 50) %>...</td>
+            <td><%= blog.createdAt.toLocaleDateString() %></td>
+            <td>
+              <a href="/blog/edit/<%= blog._id %>" class="btn btn-sm btn-warning mb-1">Edit</a>
+              <form action="/blog/delete/<%= blog._id %>" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <% } %>
+  </div>
+
+  <%- include('./partials/scripts') %>
+</body>
+
+</html>

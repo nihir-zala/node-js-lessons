@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Sign In</title>
+  <%- include('./partials/header') %>
+</head>
+
+<body>
+  <%- include('./partials/navbar') %>
+
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow p-4" style="min-width: 350px; max-width: 400px;">
+      <h3 class="text-center mb-4">Sign In</h3>
+
+      <% if (locals.error) { %>
+      <div class="alert alert-danger" role="alert">
+        <%= (locals.error) %>
+      </div>
+      <% } %>
+
+      <form method="POST" action="/user/signin">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="mb-3">
+          <span>Don't have an account? <a href="/user/signup">Sign up</a></span>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <%- include('./partials/scripts') %>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Index</title>
+  <%- include('./partials/header') %>
+</head>
+
+<body>
+  <%- include('./partials/navbar') %>
+  <div class="container py-5">
+    <h2 class="mb-4">All Blogs</h2>
+
+    <% if (blogs.length === 0) { %>
+    <p>No blogs yet!</p>
+    <% } %>
+
+    <div class="row">
+      <% blogs.forEach(blog => { %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <% if(blog.coverImageURL){ %>
+          <img src="<%= blog.coverImageURL %>" class="card-img-top" alt="Cover Image">
+          <% } %>
+          <div class="card-body">
+            <h5 class="card-title"><a href="/blog/<%= blog.slug %>"><%= blog.title %></a></h5>
+            <p class="card-text"><%= blog.body.substring(0, 100) %>...</p>
+          </div>
+          <div class="card-footer d-flex align-items-center">
+            <% if(blog.createdBy && blog.createdBy.profileImageURL){ %>
+            <img src="<%= blog.createdBy.profileImageURL %>" class="rounded-circle me-2" style="width:30px; height:30px;" />
+            <% } %>
+            <small class="text-muted">by <%= blog.createdBy ? blog.createdBy.fullName : "Unknown" %></small>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <%- include('./partials/scripts') %>
+</body>
+
+</html>
